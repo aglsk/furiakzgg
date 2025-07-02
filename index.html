@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FÚRIAKZgg | Guilda Elite Free Fire</title>
+    <style>
+        :root {
+            --primary: #FF0000;  /* Vermelho forte para representar fúria */
+            --secondary: #000000;
+            --accent: #990000;
+            --light: #FFFFFF;
+            --dark: #0A0A0A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Bahnschrift', 'Arial Narrow', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            background-image: url('ff-pattern.png');
+            background-attachment: fixed;
+        }
+        
+        header {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('ff-battle.jpg') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            width: 220px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px var(--primary));
+        }
+        
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+            letter-spacing: 2px;
+        }
+        
+        .slogan {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            text-shadow: 0 0 10px #000;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--light);
+            padding: 15px 35px;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin: 15px;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+        }
+        
+        nav {
+            background-color: rgba(0, 0, 0, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.3);
+            border-bottom: 1px solid var(--primary);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+        
+        .nav-logo {
+            width: 70px;
+            filter: drop-shadow(0 0 5px var(--primary));
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            font-size: 3rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            margin: 15px auto;
+            box-shadow: 0 0 10px var(--primary);
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .member-card {
+            background: linear-gradient(145deg, #1A1A1A, #0D0D0D);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+            border: 1px solid #333;
+            position: relative;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.3);
+            border: 1px solid var(--primary);
+        }
+        
+        .member-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .member-card:hover .member-image img {
+            transform: scale(1.1);
+        }
+        
+        .member-rank {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            color: gold;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            border: 1px solid gold;
+        }
+        
+        .member-info {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .member-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .member-role {
+            color: var(--light);
+            font-weight: bold;
+            margin-bottom: 15px;
+            background: rgba(255, 0, 0, 0.2);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .member-id {
+            color: #AAA;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #1A1A1A, #0D0D0D);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+        }
+        
+        footer {
+            background: linear-gradient(to top, #000, #1A1A1A);
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid var(--primary);
+            position: relative;
+        }
+        
+        .footer-logo {
+            width: 120px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 5px var(--primary));
+        }
+        
+        .social-links {
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-5px) scale(1.1);
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+        }
+        
+        .copyright {
+            color: #777;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 10px 15px;
+            }
+            
+            .contact-form {
+                padding: 30px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header id="home">
+        <img src="furiakzgg-logo.png" alt="FÚRIAKZgg Logo" class="logo floating">
+        <h1>FÚRIAKZgg</h1>
+        <p class="slogan">Guilda de elite no Free Fire. Domine o battleground com nossa equipe!</p>
+        <div>
+            <a href="#join" class="btn pulse">ENTRAR PARA A GUILDA</a>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <img src="furiakzgg-icon.png" alt="FÚRIAKZgg Logo" class="nav-logo">
+            <ul class="nav-links">
+                <li><a href="#home">INÍCIO</a></li>
+                <li><a href="#members">MEMBROS</a></li>
+                <li><a href="#join">ENTRAR</a></li>
+                <li><a href="#contact">CONTATO</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <section id="members">
+        <h2 class="section-title">NOSSOS MELHORES</h2>
+        <div class="members-grid">
+            <div class="member-card">
+                <div class="member-image">
+                    <img src="leader.jpg" alt="Líder da Guilda">
+                    <div class="member-rank">ELITE</div>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">FURIAKZ-LEADER</h3>
+                    <p class="member-role">LÍDER & IGL</p>
+                    <p>Especialista em estratégias avançadas e táticas de squad</p>
+                    <p class="member-id">ID: 9876543210</p>
+                </div>
+            </div>
+            
+            <div class="member-card">
+                <div class="member-image">
+                    <img src="sniper.jpg" alt="Atirador da Guilda">
+                    <div class="member-rank">ELITE</div>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">FURIAKZ-SNIPER</h3>
+                    <p class="member-role">ATIRADOR PRECISO</p>
+                    <p>Taxa de acerto de 85% com sniper. Recorde de 17 kills à distância</p>
+                    <p class="member-id">ID: 8765432109</p>
+                </div>
+            </div>
+            
+            <div class="member-card">
+                <div class="member-image">
+                    <img src="rusher.jpg" alt="Rusher da Guilda">
+                    <div class="member-rank">GRÃO-MESTRE</div>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">FURIAKZ-RUSHER</h3>
+                    <p class="member-role">FRAGGER PRINCIPAL</p>
+                    <p>Especialista em combates próximos e emboscadas</p>
+                    <p class="member-id">ID: 7654321098</p>
+                </div>
+            </div>
+            
+            <div class="member-card">
+                <div class="member-image">
+                    <img src="support.jpg" alt="Suporte da Guilda">
+                    <div class="member-rank">MESTRE</div>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">FURIAKZ-SUPPORT</h3>
+                    <p class="member-role">SUPORTE TÁTICO</p>
+                    <p>Mestre em revives e gerenciamento de suprimentos</p>
+                    <p class="member-id">ID: 6543210987</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="join">
+        <h2 class="section-title">FAÇA PARTE DA FÚRIA</h2>
+        <div class="contact-form">
+            <form id="guildForm">
+                <div class="form-group">
+                    <label for="nick">SEU NICK NO FREE FIRE</label>
+                    <input type="text" id="nick" name="nick" required placeholder="Ex: FURIAKZ-NOVATO">
+                </div>
+                
+                <div class="form-group">
+                    <label for="id">SEU ID FREE FIRE</label>
+                    <input type="text" id="id" name="id" required placeholder="Ex: 1234567890">
+                </div>
+                
+                <div class="form-group">
+                    <label for="patente">SUA PATENTE ATUAL</label>
+                    <select id="patente" name="patente" required>
+                        <option value="">SELECIONE SUA PATENTE</option>
+                        <option value="diamond">DIAMANTE</option>
+                        <option value="mestre">MESTRE</option>
+                        <option value="grandmaster">GRÃO-MESTRE</option>
+                        <option value="elite">ELITE</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="whatsapp">SEU WHATSAPP (COM DDD)</label>
+                    <input type="text" id="whatsapp" name="whatsapp" required placeholder="Ex: 21999998888">
+                </div>
+                
+                <button type="button" onclick="sendToWhatsApp()" class="btn" style="width: 100%; margin: 20px 0 0; padding: 18px; font-size: 1.2rem;">
+                    ENVIAR INSCRIÇÃO PARA LÍDER
+                </button>
+            </form>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <h2 class="section-title">FALE COM A GUILDA</h2>
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="contact-name">SEU NOME</label>
+                    <input type="text" id="contact-name" name="contact-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-whatsapp">SEU WHATSAPP</label>
+                    <input type="text" id="contact-whatsapp" name="contact-whatsapp" required placeholder="Com DDD">
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-message">MENSAGEM</label>
+                    <textarea id="contact-message" name="contact-message" required style="height: 150px;"></textarea>
+                </div>
+                
+                <button type="button" onclick="sendContactToWhatsApp()" class="btn" style="width: 100%; margin: 20px 0 0; padding: 18px; font-size: 1.2rem;">
+                    ENVIAR MENSAGEM
+                </button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        <img src="furiakzgg-icon.png" alt="FÚRIAKZgg Logo" class="footer-logo">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p class="copyright">© 2023 FÚRIAKZgg - Todos os direitos reservados<br>Free Fire é uma marca registrada da Garena</p>
+    </footer>
+
+    <script>
+        function sendToWhatsApp() {
+            const nick = document.getElementById('nick').value;
+            const id = document.getElementById('id').value;
+            const patente = document.getElementById('patente').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            
+            if(!nick || !id || !patente || !whatsapp) {
+                alert("Por favor, preencha todos os campos!");
+                return;
+            }
+            
+            const message = `*NOVA INSCRIÇÃO FÚRIAKZgg*%0A%0A*Nick no FF:* ${nick}%0A*ID no FF:* ${id}%0A*Patente:* ${patente.toUpperCase()}%0A*WhatsApp:* ${whatsapp}%0A%0A_Enviado via Site FÚRIAKZgg_`;
+            
+            window.open(`https://wa.me/5521976402296?text=${message}`, '_blank');
+        }
+        
+        function sendContactToWhatsApp() {
+            const name = document.getElementById('contact-name').value;
+            const whatsapp = document.getElementById('contact-whatsapp').value;
+            const message = document.getElementById('contact-message').value;
+            
+            if(!name || !whatsapp || !message) {
+                alert("Por favor, preencha todos os campos!");
+                return;
+            }
+            
+            const fullMessage = `*CONTATO FÚRIAKZgg*%0A%0A*Nome:* ${name}%0A*WhatsApp:* ${whatsapp}%0A%0A*Mensagem:*%0A${message}%0A%0A_Enviado via Site FÚRIAKZgg_`;
+            
+            window.open(`https://wa.me/5521976402296?text=${fullMessage}`, '_blank');
+        }
+    </script>
+</body>
+</html>
