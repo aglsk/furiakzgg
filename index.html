@@ -8,8 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #FF0000;
@@ -21,13 +19,11 @@
         }
         
         body {
-            font-family: 'Oxanium', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--dark);
             color: var(--light);
-            background-image: url('https://via.placeholder.com/1920x1080');
+            background-image: url('ff-pattern.png');
             background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
         }
         
         .bg-dark-custom {
@@ -36,67 +32,22 @@
             box-shadow: 0 5px 20px rgba(255, 0, 0, 0.3);
         }
         
-        .navbar-brand img {
-            height: 40px;
-            filter: drop-shadow(0 0 5px var(--primary));
-        }
-        
-        .nav-link {
-            color: var(--light) !important;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin: 0 10px;
-            position: relative;
-        }
-        
-        .nav-link:hover {
-            color: var(--primary) !important;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            bottom: 0;
-            left: 0;
-            transition: width 0.3s;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
         .hero-section {
             height: 100vh;
             min-height: 600px;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://via.placeholder.com/1920x1080') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('ff-battle.jpg') center/cover no-repeat;
         }
         
         .logo {
             width: 220px;
             max-width: 80%;
-            filter: drop-shadow(0 0 15px var(--primary));
+            filter: drop-shadow(0 0 10px var(--primary));
             margin-bottom: 30px;
         }
         
-        .section-title {
-            position: relative;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background: var(--primary);
-            margin: 15px auto;
-            box-shadow: 0 0 10px var(--primary);
+        .text-primary-custom {
+            color: var(--primary) !important;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
         }
         
         .btn-custom {
@@ -154,12 +105,29 @@
             transform: translateY(-5px);
         }
         
-        .toast-custom {
+        .toast-container {
             position: fixed;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 1000;
+            z-index: 1100;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+            margin: 15px auto;
+            box-shadow: 0 0 10px var(--primary);
         }
         
         .floating {
@@ -171,11 +139,6 @@
             50% { transform: translateY(-15px); }
             100% { transform: translateY(0px); }
         }
-        
-        .text-primary-custom {
-            color: var(--primary) !important;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-        }
     </style>
 </head>
 <body>
@@ -183,7 +146,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark-custom fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="furiakzgg-icon.png" alt="FÚRIAKZgg Logo">
+                <img src="furiakzgg-icon.png" alt="FÚRIAKZgg Logo" height="40">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -295,7 +258,6 @@
                 <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
                 <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
                 <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
             </div>
             <img src="furiakzgg-icon.png" alt="FÚRIAKZgg Logo" class="mb-3" style="height: 50px;">
             <p class="small text-muted mb-0">© 2023 FÚRIAKZgg - Todos os direitos reservados</p>
@@ -303,14 +265,16 @@
         </div>
     </footer>
 
-    <!-- Toast Notification -->
-    <div class="toast-custom align-items-center text-white bg-success border-0" id="toast" role="alert">
-        <div class="d-flex">
-            <div class="toast-body">
-                <i class="fas fa-check-circle me-2"></i>
-                <span id="toast-message">Mensagem enviada com sucesso!</span>
+    <!-- Toast Notification (Hidden by default) -->
+    <div class="toast-container">
+        <div id="toast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="fas fa-check-circle me-2"></i>
+                    <span id="toast-message">Mensagem enviada com sucesso!</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
         </div>
     </div>
 
@@ -318,22 +282,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // API CallMeBot configuration
-        const API_KEY = '2202603';
-        const PHONE_NUMBER = '5521976402296';
-        
-        // Initialize Toast
+        // Initialize Toast (won't show automatically)
         const toastEl = document.getElementById('toast');
         const toastMessage = document.getElementById('toast-message');
-        const toast = new bootstrap.Toast(toastEl);
+        const toast = new bootstrap.Toast(toastEl, {
+            autohide: true,
+            delay: 3000
+        });
         
-        // Show toast message
+        // Show toast message only when called
         function showToast(message, isSuccess = true) {
             toastMessage.textContent = message;
             toastEl.classList.remove('bg-success', 'bg-danger');
             toastEl.classList.add(isSuccess ? 'bg-success' : 'bg-danger');
             toast.show();
         }
+        
+        // API CallMeBot configuration
+        const API_KEY = '2202603';
+        const PHONE_NUMBER = '5521976402296';
         
         // Send message via CallMeBot API
         async function sendViaAPI(message) {
