@@ -15,12 +15,15 @@
             --accent: #990000;
             --light: #FFFFFF;
             --dark: #0A0A0A;
+            --text-light: #F8F9FA;
+            --text-muted: #ADB5BD; /* Cor mais clara para melhor legibilidade */
+            --card-bg: #1E1E1E;
         }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--dark);
-            color: var(--light);
+            color: var(--text-light); /* Texto principal mais claro */
             background-image: url('ff-pattern.png');
             background-attachment: fixed;
         }
@@ -55,7 +58,7 @@
         }
         
         .day-card {
-            background: linear-gradient(145deg, #1A1A1A, #0D0D0D);
+            background: var(--card-bg);
             border-radius: 10px;
             border-left: 4px solid var(--primary);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
@@ -73,6 +76,7 @@
             padding: 15px;
             border-bottom: 1px solid #333;
             transition: all 0.3s;
+            color: var(--text-light); /* Texto mais claro nos itens */
         }
         
         .event-item:last-child {
@@ -83,6 +87,10 @@
             background-color: rgba(255, 0, 0, 0.05);
         }
         
+        .event-description {
+            color: var(--text-muted); /* Descrição com nova cor mais legível */
+        }
+        
         .event-rank {
             color: gold;
             font-weight: bold;
@@ -90,7 +98,7 @@
         
         .event-cancelled {
             position: relative;
-            opacity: 0.6;
+            opacity: 0.8; /* Aumentei a opacidade para melhor leitura */
         }
         
         .event-cancelled::after {
@@ -102,7 +110,7 @@
             font-size: 2rem;
             font-weight: bold;
             color: var(--primary);
-            opacity: 0.3;
+            opacity: 0.2; /* Reduzi a opacidade do texto de cancelado */
             pointer-events: none;
         }
         
@@ -135,7 +143,19 @@
         .no-events {
             text-align: center;
             padding: 40px;
-            opacity: 0.7;
+            color: var(--text-muted); /* Usando a nova cor para texto */
+        }
+        
+        /* Ajustes para melhor contraste */
+        .badge.bg-dark {
+            background-color: #333 !important;
+            color: var(--text-light) !important;
+        }
+        
+        .alert-danger {
+            background-color: rgba(220, 53, 69, 0.2);
+            border-color: rgba(220, 53, 69, 0.3);
+            color: var(--text-light);
         }
     </style>
 </head>
@@ -145,14 +165,14 @@
         <div class="container">
             <img src="furiakzgg-logo.png" alt="FÚRIAKZgg Logo" class="logo-schedule mb-3">
             <h1 class="schedule-title">CRONOGRAMA SEMANAL</h1>
-            <p class="lead">Confira os eventos e partidas programadas para esta semana</p>
+            <p class="lead text-light">Confira os eventos e partidas programadas para esta semana</p>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="container py-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="h4"><i class="far fa-calendar-alt me-2"></i>Eventos da Semana</h2>
+            <h2 class="h4 text-light"><i class="far fa-calendar-alt me-2"></i>Eventos da Semana</h2>
             <div class="d-flex align-items-center">
                 <div class="spinner-border loading-spinner me-3" role="status">
                     <span class="visually-hidden">Carregando...</span>
@@ -169,7 +189,7 @@
                 <div class="spinner-border text-primary" role="status">
                     <span class="visually-hidden">Carregando...</span>
                 </div>
-                <p class="mt-3">Carregando cronograma...</p>
+                <p class="mt-3 text-light">Carregando cronograma...</p>
             </div>
         </div>
     </main>
@@ -177,7 +197,7 @@
     <!-- Footer -->
     <footer class="py-4 bg-dark text-center">
         <div class="container">
-            <p class="mb-0 small">© 2023 FÚRIAKZgg - Todos os direitos reservados</p>
+            <p class="mb-0 small text-muted">© 2023 FÚRIAKZgg - Todos os direitos reservados</p>
         </div>
     </footer>
 
@@ -224,8 +244,8 @@
                 scheduleContainer.innerHTML = `
                     <div class="no-events">
                         <i class="far fa-calendar-times fa-3x mb-3"></i>
-                        <h3>Nenhum evento agendado</h3>
-                        <p class="text-muted">Não há eventos programados para esta semana.</p>
+                        <h3 class="text-light">Nenhum evento agendado</h3>
+                        <p>Não há eventos programados para esta semana.</p>
                     </div>
                 `;
                 return;
@@ -259,7 +279,7 @@
                 scheduleHTML += `
                     <div class="day-card mb-4">
                         <div class="day-header">
-                            <h3 class="h5 mb-0"><i class="far fa-calendar-day me-2"></i>${formattedDate}</h3>
+                            <h3 class="h5 mb-0 text-light"><i class="far fa-calendar-day me-2"></i>${formattedDate}</h3>
                         </div>
                         <div class="day-events">
                             ${day.events.map(event => renderEventItem(event)).join('')}
@@ -285,13 +305,13 @@
             return `
                 <div class="event-item ${cancelledClass}">
                     <div class="d-flex justify-content-between align-items-start mb-2">
-                        <h4 class="h5 mb-0">
+                        <h4 class="h5 mb-0 text-light">
                             <i class="fas fa-gamepad me-2"></i>${event.evento}
                             ${rankBadge}
                         </h4>
                         <span class="badge bg-dark">${timeString}</span>
                     </div>
-                    <p class="mb-0 text-muted">${event.descrição}</p>
+                    <p class="mb-0 event-description">${event.descrição}</p>
                 </div>
             `;
         }
