@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronograma Semanal | FÚRIAKZgg</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF0000;
+            --secondary: #000000;
+            --accent: #990000;
+            --light: #FFFFFF;
+            --dark: #0A0A0A;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            background-image: url('ff-pattern.png');
+            background-attachment: fixed;
+        }
+        
+        .schedule-header {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('ff-battle.jpg') center/cover no-repeat;
+            padding: 80px 0;
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .logo-schedule {
+            width: 120px;
+            filter: drop-shadow(0 0 10px var(--primary));
+        }
+        
+        .schedule-title {
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .schedule-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            margin: 15px auto;
+            box-shadow: 0 0 10px var(--primary);
+        }
+        
+        .day-card {
+            background: linear-gradient(145deg, #1A1A1A, #0D0D0D);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .day-header {
+            background-color: rgba(255, 0, 0, 0.1);
+            padding: 15px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .event-item {
+            padding: 15px;
+            border-bottom: 1px solid #333;
+            transition: all 0.3s;
+        }
+        
+        .event-item:last-child {
+            border-bottom: none;
+        }
+        
+        .event-item:hover {
+            background-color: rgba(255, 0, 0, 0.05);
+        }
+        
+        .event-rank {
+            color: gold;
+            font-weight: bold;
+        }
+        
+        .event-cancelled {
+            position: relative;
+            opacity: 0.6;
+        }
+        
+        .event-cancelled::after {
+            content: 'CANCELADO';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-15deg);
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .loading-spinner {
+            display: none;
+            width: 3rem;
+            height: 3rem;
+            color: var(--primary);
+        }
+        
+        .refresh-btn {
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .refresh-btn:hover {
+            transform: rotate(360deg);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        }
+        
+        .no-events {
+            text-align: center;
+            padding: 40px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="schedule-header text-center">
+        <div class="container">
+            <img src="furiakzgg-logo.png" alt="FÚRIAKZgg Logo" class="logo-schedule mb-3">
+            <h1 class="schedule-title">CRONOGRAMA SEMANAL</h1>
+            <p class="lead">Confira os eventos e partidas programadas para esta semana</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="h4"><i class="far fa-calendar-alt me-2"></i>Eventos da Semana</h2>
+            <div class="d-flex align-items-center">
+                <div class="spinner-border loading-spinner me-3" role="status">
+                    <span class="visually-hidden">Carregando...</span>
+                </div>
+                <button id="refresh-btn" class="refresh-btn">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="schedule-container">
+            <!-- Os eventos serão carregados aqui via JavaScript -->
+            <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Carregando...</span>
+                </div>
+                <p class="mt-3">Carregando cronograma...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-center">
+        <div class="container">
+            <p class="mb-0 small">© 2023 FÚRIAKZgg - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // API URL
+        const API_URL = 'https://script.google.com/macros/s/AKfycbxYJN2F46OuM_2yfLyhDl_AK9HWWeBq8LevIJKHLPDxcnMaqzeOsVkNas1Hjgu8O0b4Uw/exec';
+        
+        // Elementos DOM
+        const scheduleContainer = document.getElementById('schedule-container');
+        const loadingSpinner = document.querySelector('.loading-spinner');
+        const refreshBtn = document.getElementById('refresh-btn');
+        
+        // Formatador de data
+        const dateFormatter = new Intl.DateTimeFormat('pt-BR', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        
+        // Carregar cronograma
+        async function loadSchedule() {
+            try {
+                showLoading(true);
+                
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error('Erro na requisição');
+                
+                const events = await response.json();
+                renderSchedule(events);
+            } catch (error) {
+                console.error('Erro ao carregar cronograma:', error);
+                showError();
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        // Renderizar cronograma
+        function renderSchedule(events) {
+            if (!events || events.length === 0) {
+                scheduleContainer.innerHTML = `
+                    <div class="no-events">
+                        <i class="far fa-calendar-times fa-3x mb-3"></i>
+                        <h3>Nenhum evento agendado</h3>
+                        <p class="text-muted">Não há eventos programados para esta semana.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Agrupar eventos por dia
+            const eventsByDay = {};
+            events.forEach(event => {
+                const eventDate = new Date(event.dia);
+                const dateKey = eventDate.toDateString();
+                
+                if (!eventsByDay[dateKey]) {
+                    eventsByDay[dateKey] = {
+                        date: eventDate,
+                        events: []
+                    };
+                }
+                
+                eventsByDay[dateKey].events.push(event);
+            });
+            
+            // Ordenar dias
+            const sortedDays = Object.values(eventsByDay).sort((a, b) => a.date - b.date);
+            
+            // Gerar HTML
+            let scheduleHTML = '';
+            
+            sortedDays.forEach(day => {
+                const formattedDate = capitalizeFirstLetter(dateFormatter.format(day.date));
+                
+                scheduleHTML += `
+                    <div class="day-card mb-4">
+                        <div class="day-header">
+                            <h3 class="h5 mb-0"><i class="far fa-calendar-day me-2"></i>${formattedDate}</h3>
+                        </div>
+                        <div class="day-events">
+                            ${day.events.map(event => renderEventItem(event)).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            scheduleContainer.innerHTML = scheduleHTML;
+        }
+        
+        // Renderizar item de evento
+        function renderEventItem(event) {
+            const eventDate = new Date(event.dia);
+            const timeString = eventDate.toLocaleTimeString('pt-BR', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            const cancelledClass = event.cancelado ? 'event-cancelled' : '';
+            const rankBadge = event.rank ? '<span class="badge bg-warning text-dark event-rank ms-2">RANQUEADA</span>' : '';
+            
+            return `
+                <div class="event-item ${cancelledClass}">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h4 class="h5 mb-0">
+                            <i class="fas fa-gamepad me-2"></i>${event.evento}
+                            ${rankBadge}
+                        </h4>
+                        <span class="badge bg-dark">${timeString}</span>
+                    </div>
+                    <p class="mb-0 text-muted">${event.descrição}</p>
+                </div>
+            `;
+        }
+        
+        // Mostrar/ocultar loading
+        function showLoading(show) {
+            if (show) {
+                loadingSpinner.style.display = 'block';
+            } else {
+                loadingSpinner.style.display = 'none';
+            }
+        }
+        
+        // Mostrar erro
+        function showError() {
+            scheduleContainer.innerHTML = `
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    Ocorreu um erro ao carregar o cronograma. Tente novamente mais tarde.
+                </div>
+            `;
+        }
+        
+        // Utilitário: capitalizar primeira letra
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        
+        // Event listeners
+        refreshBtn.addEventListener('click', loadSchedule);
+        
+        // Carregar cronograma ao iniciar
+        document.addEventListener('DOMContentLoaded', loadSchedule);
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
