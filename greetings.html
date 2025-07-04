@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo à FÚRIAKZgg!</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF0000;
+            --secondary: #000000;
+            --accent: #990000;
+            --light: #FFFFFF;
+            --dark: #0A0A0A;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            background-image: url('ff-pattern.png');
+            background-attachment: fixed;
+        }
+        
+        .welcome-container {
+            background: linear-gradient(145deg, #1A1A1A, #0D0D0D);
+            border-radius: 15px;
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+        }
+        
+        .welcome-title {
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .welcome-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            margin: 15px auto;
+            box-shadow: 0 0 10px var(--primary);
+        }
+        
+        .member-info {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .btn-custom {
+            background-color: var(--primary);
+            color: var(--light);
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        }
+        
+        .btn-custom:hover {
+            background-color: transparent;
+            color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+        }
+        
+        .logo-welcome {
+            width: 150px;
+            filter: drop-shadow(0 0 10px var(--primary));
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="welcome-container p-4 p-md-5 text-center">
+                    <img src="furiakzgg-logo.png" alt="FÚRIAKZgg Logo" class="logo-welcome mb-4">
+                    <h1 class="welcome-title mb-4">BEM-VINDO À FÚRIAKZgg!</h1>
+                    
+                    <div class="member-info p-4 mb-5 text-start">
+                        <h4 class="mb-4"><i class="fas fa-user-check me-2"></i>SUA INFORMAÇÃO DE CADASTRO:</h4>
+                        <p class="mb-2"><strong><i class="fas fa-gamepad me-2"></i>Nick no Free Fire:</strong> <span id="nick-display"></span></p>
+                        <p class="mb-2"><strong><i class="fas fa-id-card me-2"></i>ID Free Fire:</strong> <span id="id-display"></span></p>
+                        <p class="mb-2"><strong><i class="fas fa-trophy me-2"></i>Patente:</strong> <span id="patente-display"></span></p>
+                        <p class="mb-0"><strong><i class="fab fa-whatsapp me-2"></i>WhatsApp:</strong> <span id="whatsapp-display"></span></p>
+                    </div>
+                    
+                    <h3 class="mb-4"><i class="fas fa-users me-2"></i>VOCÊ FOI ACEITO EM NOSSA GUILDA!</h3>
+                    <p class="lead mb-5">Em breve nosso líder entrará em contato pelo WhatsApp para te adicionar ao grupo oficial da guilda.</p>
+                    
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                        <a href="#" class="btn btn-custom px-4 py-3 me-sm-3">
+                            <i class="fas fa-users me-2"></i>GRUPO DO DISCORD
+                        </a>
+                        <a href="#" class="btn btn-outline-light px-4 py-3">
+                            <i class="fas fa-question-circle me-2"></i>DÚVIDAS
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para obter parâmetros da URL
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                nick: params.get('Nick') || 'Não informado',
+                id: params.get('id') || 'Não informado',
+                patente: params.get('patente') || 'Não informada',
+                whatsapp: params.get('whatsapp') || 'Não informado'
+            };
+        }
+
+        // Exibir os dados na página
+        function displayMemberInfo() {
+            const member = getUrlParams();
+            
+            document.getElementById('nick-display').textContent = member.nick;
+            document.getElementById('id-display').textContent = member.id;
+            document.getElementById('patente-display').textContent = member.patente;
+            document.getElementById('whatsapp-display').textContent = member.whatsapp;
+        }
+
+        // Executar quando a página carregar
+        window.onload = displayMemberInfo;
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
