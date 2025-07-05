@@ -16,14 +16,14 @@
             --light: #FFFFFF;
             --dark: #0A0A0A;
             --text-light: #F8F9FA;
-            --text-muted: #ADB5BD; /* Cor mais clara para melhor legibilidade */
+            --text-muted: #ADB5BD;
             --card-bg: #1E1E1E;
         }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--dark);
-            color: var(--text-light); /* Texto principal mais claro */
+            color: var(--text-light);
             background-image: url('ff-pattern.png');
             background-attachment: fixed;
         }
@@ -76,7 +76,7 @@
             padding: 15px;
             border-bottom: 1px solid #333;
             transition: all 0.3s;
-            color: var(--text-light); /* Texto mais claro nos itens */
+            color: var(--text-light);
         }
         
         .event-item:last-child {
@@ -88,7 +88,7 @@
         }
         
         .event-description {
-            color: var(--text-muted); /* Descrição com nova cor mais legível */
+            color: var(--text-muted);
         }
         
         .event-rank {
@@ -98,7 +98,7 @@
         
         .event-cancelled {
             position: relative;
-            opacity: 0.8; /* Aumentei a opacidade para melhor leitura */
+            opacity: 0.8;
         }
         
         .event-cancelled::after {
@@ -110,7 +110,7 @@
             font-size: 2rem;
             font-weight: bold;
             color: var(--primary);
-            opacity: 0.2; /* Reduzi a opacidade do texto de cancelado */
+            opacity: 0.2;
             pointer-events: none;
         }
         
@@ -143,10 +143,9 @@
         .no-events {
             text-align: center;
             padding: 40px;
-            color: var(--text-muted); /* Usando a nova cor para texto */
+            color: var(--text-muted);
         }
         
-        /* Ajustes para melhor contraste */
         .badge.bg-dark {
             background-color: #333 !important;
             color: var(--text-light) !important;
@@ -184,7 +183,6 @@
         </div>
         
         <div id="schedule-container">
-            <!-- Os eventos serão carregados aqui via JavaScript -->
             <div class="text-center py-5">
                 <div class="spinner-border text-primary" role="status">
                     <span class="visually-hidden">Carregando...</span>
@@ -254,7 +252,7 @@
             // Agrupar eventos por dia
             const eventsByDay = {};
             events.forEach(event => {
-                const eventDate = new Date(event.dia);
+                const eventDate = new Date(event.dataHora);  // Alterado de 'dia' para 'dataHora'
                 const dateKey = eventDate.toDateString();
                 
                 if (!eventsByDay[dateKey]) {
@@ -293,7 +291,7 @@
         
         // Renderizar item de evento
         function renderEventItem(event) {
-            const eventDate = new Date(event.dia);
+            const eventDate = new Date(event.dataHora);  // Alterado de 'dia' para 'dataHora'
             const timeString = eventDate.toLocaleTimeString('pt-BR', {
                 hour: '2-digit',
                 minute: '2-digit'
