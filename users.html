@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membros | FÚRIAKZgg</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF0000;
+            --secondary: #000000;
+            --accent: #990000;
+            --light: #FFFFFF;
+            --dark: #0A0A0A;
+            --text-light: #F8F9FA;
+            --text-muted: #ADB5BD;
+            --card-bg: #1E1E1E;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--text-light);
+            background-image: url('ff-pattern.png');
+            background-attachment: fixed;
+        }
+        
+        .members-header {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('ff-team.jpg') center/cover no-repeat;
+            padding: 100px 0;
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .logo-members {
+            width: 120px;
+            filter: drop-shadow(0 0 10px var(--primary));
+        }
+        
+        .members-title {
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .members-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+            margin: 15px auto;
+            box-shadow: 0 0 10px var(--primary);
+        }
+        
+        .member-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            margin-bottom: 25px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .member-header {
+            background-color: rgba(255, 0, 0, 0.1);
+            padding: 15px;
+            border-bottom: 1px solid #333;
+            position: relative;
+        }
+        
+        .member-rank {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: gold;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border: 1px solid gold;
+        }
+        
+        .member-body {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            margin: -70px auto 15px;
+            display: block;
+            background-color: var(--dark);
+        }
+        
+        .member-role {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: capitalize;
+        }
+        
+        .member-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            margin: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .search-container {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 1px solid #333;
+        }
+        
+        .role-filter {
+            margin-top: 15px;
+        }
+        
+        .loading-spinner {
+            display: none;
+            width: 3rem;
+            height: 3rem;
+            color: var(--primary);
+        }
+        
+        .error-message {
+            display: none;
+            color: #dc3545;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="members-header text-center">
+        <div class="container">
+            <img src="furiakzgg-logo.png" alt="FÚRIAKZgg Logo" class="logo-members mb-3">
+            <h1 class="members-title">MEMBROS DA GUILDA</h1>
+            <p class="lead text-light">Conheça nosso time de elite</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container py-4">
+        <!-- Filtros e Busca -->
+        <div class="search-container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-text bg-dark text-light border-dark">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" id="search-input" class="form-control bg-dark text-light border-dark" placeholder="Buscar por nick ou nome...">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <select id="role-filter" class="form-select bg-dark text-light border-dark role-filter">
+                        <option value="">Todos os cargos</option>
+                        <option value="LÍDER">Líder</option>
+                        <option value="CAPITÃO">Capitão</option>
+                        <option value="ATIRADOR">Atirador</option>
+                        <option value="SUPORTE">Suporte</option>
+                        <option value="FRAGGER">Fragger</option>
+                        <option value="MEMBRO">Membro</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Status Loading/Error -->
+        <div class="text-center py-5" id="loading-spinner">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Carregando...</span>
+            </div>
+            <p class="mt-3 text-light">Carregando membros...</p>
+        </div>
+        
+        <div class="alert alert-danger d-none" id="error-message">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            <span id="error-text">Ocorreu um erro ao carregar os membros. Tente novamente mais tarde.</span>
+        </div>
+        
+        <!-- Contadores -->
+        <div class="row mb-4" id="counters-container" style="display: none;">
+            <div class="col-md-4">
+                <div class="card bg-dark text-center py-3">
+                    <h3 class="text-primary mb-0" id="total-members">0</h3>
+                    <p class="mb-0 text-muted">Membros</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-dark text-center py-3">
+                    <h3 class="text-primary mb-0" id="elite-members">0</h3>
+                    <p class="mb-0 text-muted">Elite</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-dark text-center py-3">
+                    <h3 class="text-primary mb-0" id="active-members">0</h3>
+                    <p class="mb-0 text-muted">Ativos</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Lista de Membros -->
+        <div class="row" id="members-container">
+            <!-- Os membros serão carregados aqui via JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-center">
+        <div class="container">
+            <p class="mb-0 small text-muted">© 2023 FÚRIAKZgg - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        // API URL
+        const API_URL = 'https://script.google.com/macros/s/AKfycbxYJN2F46OuM_2yfLyhDl_AK9HWWeBq8LevIJKHLPDxcnMaqzeOsVkNas1Hjgu8O0b4Uw/exec?rota=usuarios';
+        
+        // Elementos DOM
+        const membersContainer = document.getElementById('members-container');
+        const searchInput = document.getElementById('search-input');
+        const roleFilter = document.getElementById('role-filter');
+        const totalMembersEl = document.getElementById('total-members');
+        const eliteMembersEl = document.getElementById('elite-members');
+        const activeMembersEl = document.getElementById('active-members');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const errorMessage = document.getElementById('error-message');
+        const countersContainer = document.getElementById('counters-container');
+        
+        // Variável para armazenar os membros
+        let membersData = [];
+        
+        // Carregar membros da API
+        async function loadMembers() {
+            try {
+                showLoading(true);
+                hideError();
+                
+                const response = await fetch(API_URL);
+                
+                if (!response.ok) {
+                    throw new Error(`Erro na API: ${response.status}`);
+                }
+                
+                membersData = await response.json();
+                
+                if (!Array.isArray(membersData)) {
+                    throw new Error('Dados recebidos não são válidos');
+                }
+                
+                renderMembers(membersData);
+                updateCounters(membersData);
+                countersContainer.style.display = 'flex';
+            } catch (error) {
+                console.error('Erro ao carregar membros:', error);
+                showError(error.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+        
+        // Renderizar membros
+        function renderMembers(members) {
+            let membersHTML = '';
+            
+            members.forEach(member => {
+                // Formatar a data de ingresso
+                const joinDate = formatDate(member.joinData);
+                // Converter role para formato mais legível
+                const formattedRole = formatRole(member.role);
+                
+                membersHTML += `
+                    <div class="col-lg-4 col-md-6">
+                        <div class="member-card">
+                            <div class="member-header">
+                                <span class="member-rank">${member.rank}</span>
+                                <h4 class="h5 mb-0 text-light">${member.nick}</h4>
+                            </div>
+                            <div class="member-body">
+                                <div class="member-avatar">
+                                    <i class="fas fa-user fa-3x" style="line-height: 100px;"></i>
+                                </div>
+                                <p class="member-role">${formattedRole}</p>
+                                <p class="text-muted small">${member.nome}</p>
+                                <p class="text-muted"><small>Membro desde ${joinDate}</small></p>
+                                
+                                <div class="member-stats">
+                                    <div class="stat-item">
+                                        <div class="stat-label">ID</div>
+                                        <div class="text-light">${member.id}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            membersContainer.innerHTML = membersHTML || `
+                <div class="col-12 text-center py-5">
+                    <i class="fas fa-user-slash fa-3x mb-3 text-muted"></i>
+                    <h3 class="text-light">Nenhum membro encontrado</h3>
+                    <p class="text-muted">Tente ajustar seus filtros de busca</p>
+                </div>
+            `;
+        }
+        
+        // Formatador de role
+        function formatRole(role) {
+            return role.charAt(0).toUpperCase() + role.slice(1).toLowerCase();
+        }
+        
+        // Atualizar contadores
+        function updateCounters(members) {
+            totalMembersEl.textContent = members.length;
+            eliteMembersEl.textContent = members.filter(m => m.rank === 'ELITE').length;
+            // Consideramos todos como ativos pois a API não envia status
+            activeMembersEl.textContent = members.length; 
+        }
+        
+        // Filtrar membros
+        function filterMembers() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const roleFilterValue = roleFilter.value.toUpperCase();
+            
+            const filtered = membersData.filter(member => {
+                const matchesSearch = member.nick.toLowerCase().includes(searchTerm) || 
+                                     member.nome.toLowerCase().includes(searchTerm);
+                const matchesRole = roleFilterValue ? member.role === roleFilterValue : true;
+                return matchesSearch && matchesRole;
+            });
+            
+            renderMembers(filtered);
+            updateCounters(filtered);
+        }
+        
+        // Formatador de data
+        function formatDate(dateString) {
+            if (!dateString) return 'Data não informada';
+            
+            try {
+                const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+                return new Date(dateString).toLocaleDateString('pt-BR', options);
+            } catch {
+                return 'Data inválida';
+            }
+        }
+        
+        // Mostrar/ocultar loading
+        function showLoading(show) {
+            loadingSpinner.style.display = show ? 'block' : 'none';
+        }
+        
+        // Mostrar erro
+        function showError(message = 'Ocorreu um erro ao carregar os membros. Tente novamente mais tarde.') {
+            errorMessage.classList.remove('d-none');
+            document.getElementById('error-text').textContent = message;
+        }
+        
+        // Ocultar erro
+        function hideError() {
+            errorMessage.classList.add('d-none');
+        }
+        
+        // Event listeners
+        searchInput.addEventListener('input', filterMembers);
+        roleFilter.addEventListener('change', filterMembers);
+        
+        // Botão para recarregar em caso de erro
+        errorMessage.addEventListener('click', loadMembers);
+
+        // Carregar membros ao iniciar
+        document.addEventListener('DOMContentLoaded', loadMembers);
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
