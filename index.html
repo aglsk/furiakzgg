@@ -3,121 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FÚRIAKZgg | Guilda Elite Free Fire</title>
+    <title>FÚRIAKZgg | Guilda Elite de Free Fire</title>
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&family=Kanit:wght@700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #FF0000;
-            --secondary: #000000;
-            --accent: #990000;
-            --light: #FFFFFF;
-            --dark: #0A0A0A;
-            --success: #28a745;
+            --furia-red: #FF0000;
+            --furia-dark: #0A0A0A;
+            --furia-accent: #990000;
+            --furia-gold: #FFD700;
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            background-image: url('ff-pattern.png');
-            background-attachment: fixed;
+            font-family: 'Oxanium', sans-serif;
+            background-color: var(--furia-dark);
+            color: white;
         }
         
-        .bg-dark-custom {
-            background-color: rgba(0, 0, 0, 0.9) !important;
-            border-bottom: 1px solid var(--primary);
-            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.3);
+        .furia-title {
+            font-family: 'Kanit', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        }
+        
+        .navbar {
+            background-color: rgba(10, 10, 10, 0.95) !important;
+            border-bottom: 2px solid var(--furia-red);
         }
         
         .hero-section {
             height: 100vh;
             min-height: 600px;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('ff-battle.jpg') center/cover no-repeat;
-        }
-        
-        .logo {
-            width: 220px;
-            max-width: 80%;
-            filter: drop-shadow(0 0 10px var(--primary));
-            margin-bottom: 30px;
-        }
-        
-        .text-primary-custom {
-            color: var(--primary) !important;
-            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-        }
-        
-        .btn-custom {
-            background-color: var(--primary);
-            color: var(--light);
-            border: 2px solid var(--primary);
-            border-radius: 30px;
-            padding: 12px 35px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-        }
-        
-        .btn-custom:hover {
-            background-color: transparent;
-            color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
-        }
-        
-        .form-container {
-            background: linear-gradient(145deg, #1A1A1A, #0D0D0D);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            border: 1px solid #333;
-        }
-        
-        .form-control-custom {
-            background-color: #111;
-            border: 1px solid #333;
-            color: var(--light);
-            padding: 12px 15px;
-            border-radius: 5px;
-        }
-        
-        .form-control-custom:focus {
-            background-color: #111;
-            color: var(--light);
-            border-color: var(--primary);
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-        }
-        
-        .social-icon {
-            color: var(--light);
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: all 0.3s;
-        }
-        
-        .social-icon:hover {
-            color: var(--primary);
-            transform: translateY(-5px);
-        }
-        
-        .toast-container {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1100;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
         }
         
         .section-title {
             position: relative;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            margin-bottom: 2rem;
         }
         
         .section-title::after {
@@ -125,28 +58,69 @@
             display: block;
             width: 80px;
             height: 3px;
-            background: var(--primary);
+            background: var(--furia-red);
             margin: 15px auto;
-            box-shadow: 0 0 10px var(--primary);
         }
         
-        .floating {
-            animation: floating 3s ease-in-out infinite;
+        .card-guild {
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid #333;
+            transition: all 0.3s;
         }
         
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+        .card-guild:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+        
+        .btn-furia {
+            background-color: var(--furia-red);
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn-furia:hover {
+            background-color: var(--furia-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+        }
+        
+        .recruitment-form {
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 8px;
+            border-left: 4px solid var(--furia-red);
+        }
+        
+        .form-control-furia {
+            background-color: rgba(30, 30, 30, 0.8);
+            border: 1px solid #333;
+            color: white;
+        }
+        
+        .form-control-furia:focus {
+            background-color: rgba(40, 40, 40, 0.8);
+            border-color: var(--furia-red);
+            box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.25);
+            color: white;
+        }
+        
+        .required-field::after {
+            content: " *";
+            color: var(--furia-red);
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark-custom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="furiakzgg-icon.png" alt="FÚRIAKZgg Logo" height="40">
+                <img src="https://via.placeholder.com/40x40" alt="FÚRIAKZgg Logo" height="40" class="me-2">
+                <span class="furia-title">FÚRIAKZgg</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -154,13 +128,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#home"><i class="fas fa-home me-2"></i>Início</a>
+                        <a class="nav-link" href="#home">Início</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#join"><i class="fas fa-users me-2"></i>Participar</a>
+                        <a class="nav-link" href="#about">Sobre</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact"><i class="fas fa-envelope me-2"></i>Contato</a>
+                        <a class="nav-link" href="#members">Membros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#achievements">Conquistas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#recruitment">Recrutamento</a>
                     </li>
                 </ul>
             </div>
@@ -168,47 +148,199 @@
     </nav>
 
     <!-- Hero Section -->
-    <header id="home" class="hero-section d-flex align-items-center justify-content-center text-center">
-        <div class="container">
-            <img src="furiakzgg-logo.png" alt="FÚRIAKZgg Logo" class="logo floating">
-            <h1 class="text-primary-custom mb-4">FÚRIAKZgg</h1>
+    <section id="home" class="hero-section d-flex align-items-center">
+        <div class="container text-center">
+            <h1 class="furia-title display-3 mb-4">
+                <span class="text-danger">FÚRIA</span><span class="text-warning">KZgg</span>
+            </h1>
             <p class="lead mb-5">Guilda competitiva de Free Fire para jogadores Diamante a Elite</p>
-            <a href="#join" class="btn btn-custom"><i class="fas fa-gamepad me-2"></i>ENTRAR PARA A GUILDA</a>
+            <a href="#recruitment" class="btn btn-furia btn-lg px-4 py-2">
+                <i class="fas fa-user-plus me-2"></i>Junte-se a nós
+            </a>
         </div>
-    </header>
+    </section>
 
-    <!-- Join Section -->
-    <section id="join" class="py-5">
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-dark">
         <div class="container py-5">
-            <h2 class="text-center text-primary-custom section-title">FAÇA PARTE DA FÚRIA</h2>
+            <h2 class="text-center text-danger section-title">SOBRE A GUILDA</h2>
+            
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="https://via.placeholder.com/600x400" alt="Time FÚRIAKZgg" class="img-fluid rounded">
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="text-warning mb-3">Nossa História</h3>
+                    <p>Fundada em 2020, a FÚRIAKZgg surgiu da união de jogadores experientes que buscavam criar uma guilda competitiva e organizada no cenário do Free Fire.</p>
+                    
+                    <h3 class="text-warning mt-4 mb-3">Nossos Valores</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i>Respeito entre os membros</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i>Dedicação e comprometimento</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i>Melhoria contínua</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-danger me-2"></i>Espírito competitivo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section id="members" class="py-5 bg-black">
+        <div class="container py-5">
+            <h2 class="text-center text-danger section-title">NOSSOS MEMBROS</h2>
+            
+            <div class="row g-4">
+                <!-- Líder -->
+                <div class="col-md-4">
+                    <div class="card card-guild h-100 border-danger">
+                        <div class="card-body text-center">
+                            <img src="https://via.placeholder.com/150" class="rounded-circle mb-3" alt="Líder">
+                            <h4 class="text-danger">FúriaMaster</h4>
+                            <h6 class="text-warning mb-3">Líder</h6>
+                            <p>Experiência: 5 anos</p>
+                            <p>Patente: Elite</p>
+                            <p>KD: 4.2</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vice-líder -->
+                <div class="col-md-4">
+                    <div class="card card-guild h-100 border-warning">
+                        <div class="card-body text-center">
+                            <img src="https://via.placeholder.com/150" class="rounded-circle mb-3" alt="Vice-líder">
+                            <h4 class="text-danger">KZShadow</h4>
+                            <h6 class="text-warning mb-3">Vice-líder</h6>
+                            <p>Experiência: 4 anos</p>
+                            <p>Patente: Grão-Mestre</p>
+                            <p>KD: 3.8</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Capitão -->
+                <div class="col-md-4">
+                    <div class="card card-guild h-100 border-primary">
+                        <div class="card-body text-center">
+                            <img src="https://via.placeholder.com/150" class="rounded-circle mb-3" alt="Capitão">
+                            <h4 class="text-danger">FúriaSniper</h4>
+                            <h6 class="text-warning mb-3">Capitão</h6>
+                            <p>Experiência: 3 anos</p>
+                            <p>Patente: Mestre</p>
+                            <p>KD: 3.5</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="#recruitment" class="btn btn-furia px-4 py-2">
+                    <i class="fas fa-users me-2"></i>Conheça toda a equipe
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="py-5 bg-dark">
+        <div class="container py-5">
+            <h2 class="text-center text-danger section-title">NOSSAS CONQUISTAS</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card card-guild h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-trophy text-warning display-4 mb-3"></i>
+                            <h4>1º Lugar Torneio FFBR</h4>
+                            <p class="text-muted">Abril 2023</p>
+                            <p>Campeões do torneio nacional com 12 vitórias em 15 partidas.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card card-guild h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-medal text-warning display-4 mb-3"></i>
+                            <h4>Top 3 Liga Diamante</h4>
+                            <p class="text-muted">Fevereiro 2023</p>
+                            <p>Pódio na liga competitiva com mais de 50 guildas participantes.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card card-guild h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-award text-warning display-4 mb-3"></i>
+                            <h4>Melhor Guilda Emergente</h4>
+                            <p class="text-muted">Dezembro 2022</p>
+                            <p>Reconhecimento pela organização e crescimento no cenário competitivo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <button class="btn btn-furia px-4 py-2" data-bs-toggle="modal" data-bs-target="#achievementsModal">
+                    <i class="fas fa-trophy me-2"></i>Ver todas as conquistas
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recruitment Section -->
+    <section id="recruitment" class="py-5 bg-black">
+        <div class="container py-5">
+            <h2 class="text-center text-danger section-title">JUNTE-SE À FÚRIA</h2>
+            
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="form-container">
+                    <div class="recruitment-form p-4 p-md-5">
+                        <h3 class="text-center text-warning mb-4">FORMULÁRIO DE RECRUTAMENTO</h3>
+                        
                         <form id="guildForm">
-                            <div class="mb-4">
-                                <label for="nick" class="form-label text-primary-custom"><i class="fas fa-user me-2"></i>NICK NO FREE FIRE</label>
-                                <input type="text" class="form-control form-control-custom" id="nick" required>
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <label for="nickname" class="form-label required-field">Nickname no Free Fire</label>
+                                    <input type="text" class="form-control form-control-furia" id="nickname" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="playerId" class="form-label required-field">ID do Jogador</label>
+                                    <input type="text" class="form-control form-control-furia" id="playerId" required>
+                                </div>
                             </div>
-                            <div class="mb-4">
-                                <label for="id" class="form-label text-primary-custom"><i class="fas fa-id-card me-2"></i>ID FREE FIRE</label>
-                                <input type="text" class="form-control form-control-custom" id="id" required>
+                            
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <label for="rank" class="form-label required-field">Patente Atual</label>
+                                    <select class="form-select form-control-furia" id="rank" required>
+                                        <option value="" selected disabled>Selecione...</option>
+                                        <option value="DIAMOND">Diamante</option>
+                                        <option value="MASTER">Mestre</option>
+                                        <option value="GRANDMASTER">Grão-Mestre</option>
+                                        <option value="ELITE">Elite</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="whatsapp" class="form-label required-field">WhatsApp (com DDD)</label>
+                                    <input type="text" class="form-control form-control-furia" id="whatsapp" required>
+                                </div>
                             </div>
+                            
                             <div class="mb-4">
-                                <label for="patente" class="form-label text-primary-custom"><i class="fas fa-trophy me-2"></i>PATENTE ATUAL</label>
-                                <select class="form-select form-control-custom" id="patente" required>
-                                    <option value="">SELECIONE</option>
-                                    <option value="DIAMANTE">DIAMANTE</option>
-                                    <option value="MESTRE">MESTRE</option>
-                                    <option value="GRÃO-MESTRE">GRÃO-MESTRE</option>
-                                    <option value="ELITE">ELITE</option>
-                                </select>
+                                <label for="experience" class="form-label">Experiência em Guildas</label>
+                                <textarea class="form-control form-control-furia" id="experience" rows="2"></textarea>
                             </div>
+                            
                             <div class="mb-4">
-                                <label for="whatsapp" class="form-label text-primary-custom"><i class="fab fa-whatsapp me-2"></i>WHATSAPP (COM DDD)</label>
-                                <input type="text" class="form-control form-control-custom" id="whatsapp" required>
+                                <label for="whyJoin" class="form-label required-field">Por que quer entrar para a FÚRIAKZgg?</label>
+                                <textarea class="form-control form-control-furia" id="whyJoin" rows="3" required></textarea>
                             </div>
+                            
                             <div class="text-center">
-                                <button type="button" id="submitBtn" class="btn btn-custom px-5 py-3">
+                                <button type="submit" class="btn btn-furia px-5 py-3">
                                     <i class="fas fa-paper-plane me-2"></i>ENVIAR INSCRIÇÃO
                                 </button>
                             </div>
@@ -219,159 +351,88 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-5 bg-dark">
-        <div class="container py-5">
-            <h2 class="text-center text-primary-custom section-title">FALE COM A GUILDA</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="form-container">
-                        <form id="contactForm">
-                            <div class="mb-4">
-                                <label for="contact-name" class="form-label text-primary-custom"><i class="fas fa-user-tag me-2"></i>SEU NOME</label>
-                                <input type="text" class="form-control form-control-custom" id="contact-name" required>
-                            </div>
-                            <div class="mb-4">
-                                <label for="contact-whatsapp" class="form-label text-primary-custom"><i class="fab fa-whatsapp me-2"></i>SEU WHATSAPP</label>
-                                <input type="text" class="form-control form-control-custom" id="contact-whatsapp" required>
-                            </div>
-                            <div class="mb-4">
-                                <label for="contact-message" class="form-label text-primary-custom"><i class="fas fa-comment-dots me-2"></i>MENSAGEM</label>
-                                <textarea class="form-control form-control-custom" id="contact-message" rows="5" required></textarea>
-                            </div>
-                            <div class="text-center">
-                                <button type="button" id="contactBtn" class="btn btn-custom px-5 py-3">
-                                    <i class="fas fa-envelope me-2"></i>ENVIAR MENSAGEM
-                                </button>
-                            </div>
-                        </form>
+    <!-- Footer -->
+    <footer class="py-4 bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0 text-center text-md-start">
+                    <h4 class="text-danger mb-3">FÚRIAKZgg</h4>
+                    <p>Guilda competitiva de Free Fire</p>
+                    <p>Desde 2020</p>
+                </div>
+                
+                <div class="col-md-4 mb-4 mb-md-0 text-center">
+                    <h4 class="text-danger mb-3">Redes Sociais</h4>
+                    <div>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-discord fa-lg"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-youtube fa-lg"></i></a>
+                        <a href="#" class="text-white mx-2"><i class="fab fa-twitch fa-lg"></i></a>
                     </div>
                 </div>
+                
+                <div class="col-md-4 text-center text-md-end">
+                    <h4 class="text-danger mb-3">Contato</h4>
+                    <p><i class="fas fa-envelope me-2"></i> contato@furiakzgg.com</p>
+                    <p><i class="fab fa-whatsapp me-2"></i> (21) 97640-2296</p>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-4">
-        <div class="container text-center">
-            <div class="mb-4">
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+            
+            <hr class="my-4 bg-secondary">
+            
+            <div class="text-center">
+                <p class="small mb-0">© 2023 FÚRIAKZgg - Todos os direitos reservados</p>
+                <p class="small">Free Fire é uma marca registrada da Garena</p>
             </div>
-            <img src="furiakzgg-icon.png" alt="FÚRIAKZgg Logo" class="mb-3" style="height: 50px;">
-            <p class="small text-muted mb-0">© 2023 FÚRIAKZgg - Todos os direitos reservados</p>
-            <p class="small text-muted">Free Fire é uma marca registrada da Garena</p>
         </div>
     </footer>
 
-    <!-- Toast Notification (Hidden by default) -->
-    <div class="toast-container">
-        <div id="toast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body">
-                    <i class="fas fa-check-circle me-2"></i>
-                    <span id="toast-message">Mensagem enviada com sucesso!</span>
+    <!-- Achievements Modal -->
+    <div class="modal fade" id="achievementsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title text-danger">Todas as Nossas Conquistas</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                <div class="modal-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item bg-dark text-white border-secondary">
+                            <i class="fas fa-trophy text-warning me-2"></i>
+                            <strong>1º Lugar Torneio FFBR</strong> - Abril 2023
+                        </li>
+                        <li class="list-group-item bg-dark text-white border-secondary">
+                            <i class="fas fa-medal text-warning me-2"></i>
+                            <strong>Top 3 Liga Diamante</strong> - Fevereiro 2023
+                        </li>
+                        <li class="list-group-item bg-dark text-white border-secondary">
+                            <i class="fas fa-award text-warning me-2"></i>
+                            <strong>Melhor Guilda Emergente</strong> - Dezembro 2022
+                        </li>
+                        <li class="list-group-item bg-dark text-white border-secondary">
+                            <i class="fas fa-trophy text-warning me-2"></i>
+                            <strong>Campeões da Série Bronze</strong> - Setembro 2022
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-furia" data-bs-dismiss="modal">Fechar</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
+    <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // Initialize Toast (won't show automatically)
-        const toastEl = document.getElementById('toast');
-        const toastMessage = document.getElementById('toast-message');
-        const toast = new bootstrap.Toast(toastEl, {
-            autohide: true,
-            delay: 3000
-        });
-        
-        // Show toast message only when called
-        function showToast(message, isSuccess = true) {
-            toastMessage.textContent = message;
-            toastEl.classList.remove('bg-success', 'bg-danger');
-            toastEl.classList.add(isSuccess ? 'bg-success' : 'bg-danger');
-            toast.show();
-        }
-        
-        // API CallMeBot configuration
-        const API_KEY = '2202603';
-        const PHONE_NUMBER = '5521976402296';
-        
-        // Send message via CallMeBot API
-        async function sendViaAPI(message) {
-            try {
-                const url = `https://api.callmebot.com/whatsapp.php?phone=${PHONE_NUMBER}&text=${encodeURIComponent(message)}&apikey=${API_KEY}`;
-                
-                const response = await fetch(url);
-                
-                if (response.ok) {
-                    showToast('Mensagem enviada com sucesso!');
-                    return true;
-                } else {
-                    showToast('Erro ao enviar mensagem. Tente novamente.', false);
-                    return false;
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showToast('Erro de conexão. Tente novamente.', false);
-                return false;
-            }
-        }
-        
-        // Handle guild application form
-        document.getElementById('submitBtn').addEventListener('click', async function() {
-            const nick = document.getElementById('nick').value;
-            const id = document.getElementById('id').value;
-            const patente = document.getElementById('patente').value;
-            const whatsapp = document.getElementById('whatsapp').value;
+        // Validação do formulário
+        document.getElementById('guildForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            if (!nick || !id || !patente || !whatsapp) {
-                showToast('Por favor, preencha todos os campos!', false);
-                return;
-            }
-            
-            const message = `*NOVA INSCRIÇÃO FÚRIAKZgg*%0A%0A*Nick no FF:* ${nick}%0A*ID no FF:* ${id}%0A*Patente:* ${patente}%0A*WhatsApp:* ${whatsapp}%0A%0A_Enviado via Site FÚRIAKZgg_`;
-            
-            const success = await sendViaAPI(message);
-            
-            if (success) {
-                document.getElementById('guildForm').reset();
-            }
-        });
-        
-        // Handle contact form
-        document.getElementById('contactBtn').addEventListener('click', async function() {
-            const name = document.getElementById('contact-name').value;
-            const whatsapp = document.getElementById('contact-whatsapp').value;
-            const message = document.getElementById('contact-message').value;
-            
-            if (!name || !whatsapp || !message) {
-                showToast('Por favor, preencha todos os campos!', false);
-                return;
-            }
-            
-            const fullMessage = `*CONTATO FÚRIAKZgg*%0A%0A*Nome:* ${name}%0A*WhatsApp:* ${whatsapp}%0A%0A*Mensagem:*%0A${message}%0A%0A_Enviado via Site FÚRIAKZgg_`;
-            
-            const success = await sendViaAPI(fullMessage);
-            
-            if (success) {
-                document.getElementById('contactForm').reset();
-            }
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+            // Simular envio (substituir por AJAX na implementação real)
+            alert('Inscrição enviada com sucesso! Entraremos em contato em breve.');
+            this.reset();
         });
     </script>
 </body>
